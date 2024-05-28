@@ -4,8 +4,8 @@ repo: github.com/dashotv/arcane
 package: app
 output: internal/app
 plugins:
-    models: false
-    routes: false
+    models: true
+    routes: true
     workers: false
     cache: false
     events: false

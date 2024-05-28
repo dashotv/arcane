@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/dashotv/fae"
+	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"
 )
 
@@ -22,6 +23,13 @@ type Application struct {
 
 	//golem:template:app/app_partial_definitions
 	// DO NOT EDIT. This section is managed by github.com/dashotv/golem.
+	// Routes
+	Engine  *echo.Echo
+	Default *echo.Group
+	Router  *echo.Group
+
+	// Models
+	DB *Connector
 
 	//golem:template:app/app_partial_definitions
 

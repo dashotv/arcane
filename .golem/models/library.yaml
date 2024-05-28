@@ -1,0 +1,19 @@
+name: library
+type: model
+fields:
+  - name: name
+    type: string
+    index: true
+  - name: path
+    type: string
+    index: true
+  - name: library_type_id
+    type: primitive.ObjectID
+  - name: library_template_id
+    type: primitive.ObjectID
+  - name: library_type
+    type: "*LibraryType"
+    bson: "-"
+  - name: library_template
+    type: "*LibraryTemplate"
+    bson: "-"
