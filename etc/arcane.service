@@ -1,0 +1,18 @@
+[Unit]
+Description=arcane Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker stop dashotv/arcane
+ExecStartPre=-/usr/bin/docker rm dashotv/arcane
+ExecStartPre=/usr/bin/docker pull dashotv/arcane
+ExecStart=/usr/bin/docker run --rm --name %n \
+    --add-host=host.docker.internal:host-gateway \
+    -p 3000:3000 \
+    dashotv/arcane
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+version: v0.14.21
+name: arcane
+repo: github.com/dashotv/arcane
+package: app
+output: internal/app
+plugins:
+    models: false
+    routes: false
+    workers: false
+    cache: false
+    events: false
+    clients: false
+definitions:
+    models: .golem/models
+    routes: .golem/routes
+    events: .golem/events
+    workers: .golem/workers
+    queues: .golem/queues
+    clients: .golem/clients
