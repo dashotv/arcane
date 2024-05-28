@@ -2,3 +2,7 @@ arcane
 /tmp
 .env*
 .md5*
+
+.flaskenv*
+!.env.project
+!.env.vault
