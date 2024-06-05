@@ -55,6 +55,10 @@ func setupWorkers(app *Application) error {
 		return fae.Wrap(err, "registering worker: library_files (LibraryFiles)")
 	}
 
+	if err := minion.Register[*LibraryFilesAll](m, &LibraryFilesAll{}); err != nil {
+		return fae.Wrap(err, "registering worker: library_files_all (LibraryFilesAll)")
+	}
+
 	app.Workers = m
 	return nil
 }
