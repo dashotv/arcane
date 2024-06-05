@@ -1,0 +1,4 @@
+name: library_files
+fields:
+    - name: id
+      type: string

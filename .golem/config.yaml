@@ -6,7 +6,7 @@ output: internal/app
 plugins:
     models: true
     routes: true
-    workers: false
+    workers: true
     cache: false
     events: false
     clients: false

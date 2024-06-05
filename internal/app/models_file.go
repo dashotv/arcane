@@ -21,3 +21,18 @@ func (c *Connector) FileList(page, limit int) ([]*File, error) {
 
 	return list, nil
 }
+
+func (c *Connector) FileCreateOrUpdate(path string) (*File, error) {
+	var f *File
+	list, err := c.File.Query().Where("path", path).Desc("path").Limit(1).Run()
+	if err != nil {
+		return nil, err
+	}
+	if len(list) == 0 {
+		f = &File{Path: path}
+	} else {
+		f = list[0]
+	}
+
+	return f, nil
+}

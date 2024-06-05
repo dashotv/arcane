@@ -34,6 +34,14 @@ type Config struct {
 	ClerkSecretKey string `env:"CLERK_SECRET_KEY"`
 	ClerkToken     string `env:"CLERK_TOKEN"`
 
+	// Workers
+	MinionConcurrency int    `env:"MINION_CONCURRENCY" envDefault:"10"`
+	MinionDebug       bool   `env:"MINION_DEBUG" envDefault:"false"`
+	MinionBufferSize  int    `env:"MINION_BUFFER_SIZE" envDefault:"100"`
+	MinionURI         string `env:"MINION_URI"`
+	MinionDatabase    string `env:"MINION_DATABASE"`
+	MinionCollection  string `env:"MINION_COLLECTION"`
+
 	//golem:template:app/config_partial_struct
 
 }

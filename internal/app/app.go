@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/dashotv/fae"
+	"github.com/dashotv/minion"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"
 )
@@ -30,6 +31,9 @@ type Application struct {
 
 	// Models
 	DB *Connector
+
+	// Workers
+	Workers *minion.Minion
 
 	//golem:template:app/app_partial_definitions
 
