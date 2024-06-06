@@ -35,7 +35,7 @@ export default defineConfig({
     outDir: "../static",
   },
   server: {
-    port: 3010,
+    port: 3005,
     proxy: {
       "/api/arcane": {
         target: "http://host.docker.internal:59010",

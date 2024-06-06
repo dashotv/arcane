@@ -36,7 +36,7 @@ const App = ({ mount }: { mount: string }) => {
   const tabsMap: RoutingTabsRoute[] = [
     {
       label: "Libraries",
-      to: "search",
+      to: "",
       element: <Libraries />,
     },
   ];
