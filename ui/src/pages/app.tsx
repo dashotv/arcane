@@ -6,6 +6,7 @@ import { RoutingTabs, RoutingTabsRoute } from "@dashotv/components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Libraries from "pages/libraries";
+import Files from "pages/files";
 
 const darkTheme = createTheme({
   palette: {
@@ -38,6 +39,11 @@ const App = ({ mount }: { mount: string }) => {
       label: "Libraries",
       to: "",
       element: <Libraries />,
+    },
+    {
+      label: "Files",
+      to: "/files",
+      element: <Files />,
     },
   ];
   return (
