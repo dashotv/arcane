@@ -9,7 +9,7 @@ plugins:
     workers: true
     cache: false
     events: false
-    clients: false
+    clients: true
 definitions:
     models: .golem/models
     routes: .golem/routes
