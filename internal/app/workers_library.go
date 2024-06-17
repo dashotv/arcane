@@ -27,6 +27,9 @@ func (j *LibraryFilesAll) Work(ctx context.Context, job *minion.Job[*LibraryFile
 			if err := a.Workers.Enqueue(&LibraryFiles{ID: lib.ID.Hex()}); err != nil {
 				return fae.Wrap(err, "enqueue")
 			}
+			// if err := a.Workers.Enqueue(&PlexFiles{ID: lib.ID.Hex()}); err != nil {
+			// 	return fae.Wrap(err, "enqueue")
+			// }
 		}
 	}
 
@@ -43,6 +46,9 @@ func (j *LibraryFiles) Work(ctx context.Context, job *minion.Job[*LibraryFiles])
 	a := ContextApp(ctx)
 	id := job.Args.ID
 
+	// TODO: add reference to library
+	// TODO: create directory model and add reference?
+
 	lib, err := a.DB.LibraryGet(id)
 	if err != nil {
 		return fae.Wrap(err, "getting library")
@@ -56,7 +62,7 @@ func (j *LibraryFiles) Work(ctx context.Context, job *minion.Job[*LibraryFiles])
 			return err
 		}
 
-		l.Debugf("path: %s", path)
+		// l.Debugf("path: %s", path)
 
 		if info.IsDir() {
 			return nil

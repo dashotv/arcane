@@ -3,10 +3,12 @@ package app
 import (
 	"context"
 
-	"github.com/dashotv/fae"
-	"github.com/dashotv/minion"
+	"github.com/LukeHagar/plexgo"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"
+
+	"github.com/dashotv/fae"
+	"github.com/dashotv/minion"
 )
 
 var app *Application
@@ -37,6 +39,8 @@ type Application struct {
 
 	//golem:template:app/app_partial_definitions
 
+	Plex *plexgo.PlexAPI
+	// Watcher *Watcher
 }
 
 func Setup() error {
@@ -64,6 +68,8 @@ func Start() error {
 			return err
 		}
 	}
+
+	ctx = ContextSet(ctx, "app", app)
 
 	for _, f := range starters {
 		if err := f(ctx, app); err != nil {

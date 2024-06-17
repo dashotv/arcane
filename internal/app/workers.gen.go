@@ -59,6 +59,10 @@ func setupWorkers(app *Application) error {
 		return fae.Wrap(err, "registering worker: library_files_all (LibraryFilesAll)")
 	}
 
+	if err := minion.Register[*PlexFiles](m, &PlexFiles{}); err != nil {
+		return fae.Wrap(err, "registering worker: plex_files (PlexFiles)")
+	}
+
 	app.Workers = m
 	return nil
 }

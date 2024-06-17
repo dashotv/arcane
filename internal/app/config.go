@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/caarlos0/env/v10"
+
 	"github.com/dashotv/fae"
 )
 
@@ -27,7 +28,7 @@ type Config struct {
 	//golem:template:app/config_partial_struct
 	// DO NOT EDIT. This section is managed by github.com/dashotv/golem.
 	// Models (Database)
-	Connections ConnectionSet `env:"CONNECTIONS"`
+	Connections ConnectionSet `env:"CONNECTIONS,required"`
 
 	// Router Auth
 	Auth           bool   `env:"AUTH" envDefault:"false"`
@@ -38,12 +39,16 @@ type Config struct {
 	MinionConcurrency int    `env:"MINION_CONCURRENCY" envDefault:"10"`
 	MinionDebug       bool   `env:"MINION_DEBUG" envDefault:"false"`
 	MinionBufferSize  int    `env:"MINION_BUFFER_SIZE" envDefault:"100"`
-	MinionURI         string `env:"MINION_URI"`
-	MinionDatabase    string `env:"MINION_DATABASE"`
-	MinionCollection  string `env:"MINION_COLLECTION"`
+	MinionURI         string `env:"MINION_URI,required"`
+	MinionDatabase    string `env:"MINION_DATABASE,required"`
+	MinionCollection  string `env:"MINION_COLLECTION,required"`
 
 	//golem:template:app/config_partial_struct
 
+	PlexToken          string   `env:"PLEX_TOKEN"`
+	PlexURL            string   `env:"PLEX_URL"`
+	PlexIdentifier     string   `env:"PLEX_IDENTIFIER"`
+	WatcherDirectories []string `env:"WATCHER_DIRECTORIES" envSeparator:","`
 }
 
 func (c *Config) Validate() error {
