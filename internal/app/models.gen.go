@@ -2,8 +2,6 @@
 package app
 
 import (
-	"time"
-
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.uber.org/zap"
 
@@ -57,28 +55,28 @@ func NewConnector(app *Application) (*Connector, error) {
 		return nil, err
 	}
 
-	grimoire.Indexes[*File](file, &File{})
+	grimoire.CreateIndexesFromTags[*File](file, &File{})
 
 	library, err := connection[*Library]("library")
 	if err != nil {
 		return nil, err
 	}
 
-	grimoire.Indexes[*Library](library, &Library{})
+	grimoire.CreateIndexesFromTags[*Library](library, &Library{})
 
 	library_template, err := connection[*LibraryTemplate]("library_template")
 	if err != nil {
 		return nil, err
 	}
 
-	grimoire.Indexes[*LibraryTemplate](library_template, &LibraryTemplate{})
+	grimoire.CreateIndexesFromTags[*LibraryTemplate](library_template, &LibraryTemplate{})
 
 	library_type, err := connection[*LibraryType]("library_type")
 	if err != nil {
 		return nil, err
 	}
 
-	grimoire.Indexes[*LibraryType](library_type, &LibraryType{})
+	grimoire.CreateIndexesFromTags[*LibraryType](library_type, &LibraryType{})
 
 	c := &Connector{
 		Log:             app.Log.Named("db"),
@@ -94,8 +92,8 @@ func NewConnector(app *Application) (*Connector, error) {
 type File struct { // model
 	grimoire.Document `bson:",inline"` // includes default model settings
 	//ID        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	CreatedAt  time.Time          `bson:"created_at" json:"created_at" grimoire:"index"`
-	UpdatedAt  time.Time          `bson:"updated_at" json:"updated_at" grimoire:"index"`
+	//CreatedAt time.Time          `bson:"created_at" json:"created_at"`
+	//UpdatedAt time.Time          `bson:"updated_at" json:"updated_at"`
 	Type       string             `bson:"type" json:"type" grimoire:"index"`
 	Path       string             `bson:"path" json:"path" grimoire:"index"`
 	Size       int64              `bson:"size" json:"size"`
@@ -106,8 +104,8 @@ type File struct { // model
 type Library struct { // model
 	grimoire.Document `bson:",inline"` // includes default model settings
 	//ID        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	CreatedAt         time.Time          `bson:"created_at" json:"created_at" grimoire:"index"`
-	UpdatedAt         time.Time          `bson:"updated_at" json:"updated_at" grimoire:"index"`
+	//CreatedAt time.Time          `bson:"created_at" json:"created_at"`
+	//UpdatedAt time.Time          `bson:"updated_at" json:"updated_at"`
 	Name              string             `bson:"name" json:"name" grimoire:"index"`
 	Path              string             `bson:"path" json:"path" grimoire:"index"`
 	LibraryTypeID     primitive.ObjectID `bson:"library_type_id" json:"library_type_id"`
@@ -119,16 +117,16 @@ type Library struct { // model
 type LibraryTemplate struct { // model
 	grimoire.Document `bson:",inline"` // includes default model settings
 	//ID        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	CreatedAt time.Time `bson:"created_at" json:"created_at" grimoire:"index"`
-	UpdatedAt time.Time `bson:"updated_at" json:"updated_at" grimoire:"index"`
-	Name      string    `bson:"name" json:"name"`
-	Template  string    `bson:"template" json:"template"`
+	//CreatedAt time.Time          `bson:"created_at" json:"created_at"`
+	//UpdatedAt time.Time          `bson:"updated_at" json:"updated_at"`
+	Name     string `bson:"name" json:"name"`
+	Template string `bson:"template" json:"template"`
 }
 
 type LibraryType struct { // model
 	grimoire.Document `bson:",inline"` // includes default model settings
 	//ID        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	CreatedAt time.Time `bson:"created_at" json:"created_at" grimoire:"index"`
-	UpdatedAt time.Time `bson:"updated_at" json:"updated_at" grimoire:"index"`
-	Name      string    `bson:"name" json:"name"`
+	//CreatedAt time.Time          `bson:"created_at" json:"created_at"`
+	//UpdatedAt time.Time          `bson:"updated_at" json:"updated_at"`
+	Name string `bson:"name" json:"name"`
 }
